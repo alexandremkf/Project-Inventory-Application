@@ -11,4 +11,10 @@ router.post("/new", gamesController.createGame);
 // READ - jogo individual
 router.get("/:id", gamesController.getGameById);
 
+// FORM EDIT
+router.get("/:id/edit", gamesController.editGameForm);
+
+// UPDATE
+router.post("/:id/edit", gamesController.updateGame);
+
 module.exports = router;

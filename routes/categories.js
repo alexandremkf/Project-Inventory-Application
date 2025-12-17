@@ -10,4 +10,10 @@ router.get("/:id", categoriesController.getCategoryById);
 // CREATE
 router.post("/new", categoriesController.createCategory);
 
+// FORM EDIT
+router.get("/:id/edit", categoriesController.editCategoryForm);
+
+// UPDATE
+router.post("/:id/edit", categoriesController.updateCategory);
+
 module.exports = router;

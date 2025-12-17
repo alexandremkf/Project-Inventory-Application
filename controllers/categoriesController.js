@@ -42,3 +42,28 @@ exports.createCategory = async (req, res) => {
 
   res.redirect("/categories");
 };
+
+// FORM EDIT
+exports.editCategoryForm = async (req, res) => {
+  const { id } = req.params;
+
+  const result = await pool.query(
+    "SELECT * FROM categories WHERE id = $1",
+    [id]
+  );
+
+  res.render("categories/edit", { category: result.rows[0] });
+};
+
+// UPDATE
+exports.updateCategory = async (req, res) => {
+  const { id } = req.params;
+  const { name, description } = req.body;
+
+  await pool.query(
+    "UPDATE categories SET name = $1, description = $2 WHERE id = $3",
+    [name, description, id]
+  );
+
+  res.redirect(`/categories/${id}`);
+};
