@@ -16,4 +16,7 @@ router.get("/:id/edit", categoriesController.editCategoryForm);
 // UPDATE
 router.post("/:id/edit", categoriesController.updateCategory);
 
+// DELETE
+router.post("/:id/delete", categoriesController.deleteCategory);
+
 module.exports = router;

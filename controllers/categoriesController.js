@@ -67,3 +67,17 @@ exports.updateCategory = async (req, res) => {
 
   res.redirect(`/categories/${id}`);
 };
+
+// DELETE
+exports.deleteCategory = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await pool.query("DELETE FROM categories WHERE id = $1", [id]);
+    res.redirect("/categories");
+  } catch (err) {
+    res.send(
+      "Não é possível deletar esta categoria porque ela possui jogos associados."
+    );
+  }
+};

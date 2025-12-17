@@ -17,4 +17,7 @@ router.get("/:id/edit", gamesController.editGameForm);
 // UPDATE
 router.post("/:id/edit", gamesController.updateGame);
 
+// DELETE
+router.post("/:id/delete", gamesController.deleteGame);
+
 module.exports = router;

@@ -68,3 +68,19 @@ exports.updateGame = async (req, res) => {
 
   res.redirect(`/games/${id}`);
 };
+
+// DELETE
+exports.deleteGame = async (req, res) => {
+  const { id } = req.params;
+
+  const result = await pool.query(
+    "SELECT category_id FROM games WHERE id = $1",
+    [id]
+  );
+
+  const categoryId = result.rows[0].category_id;
+
+  await pool.query("DELETE FROM games WHERE id = $1", [id]);
+
+  res.redirect(`/categories/${categoryId}`);
+};
