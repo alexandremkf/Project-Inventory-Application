@@ -1,4 +1,5 @@
 const express = require("express");
+const expressLayouts = require("express-ejs-layouts");
 const path = require("path");
 const categoriesRoutes = require("./routes/categories");
 const gamesRoutes = require("./routes/games");
@@ -11,6 +12,9 @@ app.set("view engine", "ejs");
 // middlewares
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(expressLayouts);
+app.set("layout", "layout");
+app.set("view engine", "ejs");
 app.use("/categories", categoriesRoutes);
 app.use("/games", gamesRoutes);
 
