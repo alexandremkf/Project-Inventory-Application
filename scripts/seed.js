@@ -1,10 +1,15 @@
 const pool = require("../db/pool");
 
-async function seed() {
+async function seedDatabase() {
   try {
-    console.log("🌱 Limpando banco...");
-    await pool.query("DELETE FROM games");
-    await pool.query("DELETE FROM categories");
+    console.log("🌱 Verificando banco...");
+
+    const { rows } = await pool.query("SELECT COUNT(*) FROM categories");
+
+    if (Number(rows[0].count) > 0) {
+      console.log("✅ Banco já populado, seed ignorado.");
+      return;
+    }
 
     console.log("📦 Inserindo categorias...");
     const categoriesResult = await pool.query(`
@@ -32,12 +37,15 @@ async function seed() {
       [rpg.id, action.id, sport.id, indie.id]
     );
 
-    console.log("✅ Seed finalizado com sucesso!");
+    console.log("✅ Seed executado com sucesso!");
   } catch (err) {
-    console.error("❌ Erro ao rodar seed:", err);
-  } finally {
-    pool.end();
+    console.error("❌ Erro no seed:", err);
   }
 }
 
-seed();
+module.exports = seedDatabase;
+
+// permite rodar localmente também
+if (require.main === module) {
+  seedDatabase().then(() => process.exit());
+}
