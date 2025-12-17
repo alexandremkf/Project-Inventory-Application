@@ -1,0 +1,14 @@
+<h1><%= category.name %></h1>
+<p><%= category.description %></p>
+
+<h2>Jogos</h2>
+
+<ul>
+  <% games.forEach(game => { %>
+    <li>
+      <%= game.title %> - R$ <%= game.price %>
+    </li>
+  <% }) %>
+</ul>
+
+<a href="/categories">Voltar</a>
