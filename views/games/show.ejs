@@ -1,0 +1,9 @@
+<h1><%= game.title %></h1>
+
+<p><strong>Categoria:</strong> <%= game.category_name %></p>
+<p><strong>Preço:</strong> R$ <%= game.price %></p>
+<p><strong>Estoque:</strong> <%= game.stock %></p>
+
+<p><%= game.description %></p>
+
+<a href="/categories/<%= game.category_id %>">Voltar para categoria</a>

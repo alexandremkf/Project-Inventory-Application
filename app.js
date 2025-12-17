@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const categoriesRoutes = require("./routes/categories");
+const gamesRoutes = require("./routes/games");
 const app = express();
 
 // view engine
@@ -11,6 +12,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/categories", categoriesRoutes);
+app.use("/games", gamesRoutes);
 
 // home (temporário)
 app.get("/", (req, res) => {

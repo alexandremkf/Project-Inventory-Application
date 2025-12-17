@@ -6,9 +6,12 @@
 <ul>
   <% games.forEach(game => { %>
     <li>
-      <%= game.title %> - R$ <%= game.price %>
+      <a href="/games/<%= game.id %>">
+        <%= game.title %>
+      </a>
+      - R$ <%= game.price %>
     </li>
   <% }) %>
 </ul>
 
-<a href="/categories">Voltar</a>
+<a href="/games/new">Adicionar Jogo</a>
